@@ -1,0 +1,164 @@
+<%- include('header') -%>
+ 
+    <main>
+        <!-- <h2>Chi tiet nhiem vu</h2> -->
+        <div class="detail-task-interface">
+            <div class="info-task-staff">
+                <div class="col-1">
+                    <p>ID task : <%= tasks.taskId %></p>
+                    <p>Tai xe : <%= tasks.nameTake %></p>
+                    <p>ID nhan vien : <%= staffs.find(e => e.name === tasks.nameTake && e.position === "Collector").staffId  %></p>
+                </div>
+                <div class="col-2">
+                    <p><i class="fa-regular fa-calendar-days"></i> Ngày: <%= tasks.dateStart %></p>
+                    <p>Mã phương tiện: <%= tasks.vehicle %></p>
+                    <p>Mã lộ trình: <%= tasks.routeCode %></p>
+                </div>
+                <div class="col-3">
+                    <p><i class="fa-regular fa-clock"></i> Ca: <%= tasks.shift %></p>
+                    <p>Số lượng MCP: 3</p>
+                    <p>Trạng thái: <%= tasks.status %></p>
+                </div>
+            </div>
+            <div class="line">
+                <span class="line"></span>
+            </div>
+
+            <div class="detail-route">
+                <div class="map-route">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.1230516877163!2d106.80410191488586!3d10.87824439225249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8a5f4e477e9%3A0x29d5aeb365cee20b!2zS8O9IHTDumMgeMOhIEtodSBBIMSQSCBRdeG7kWMgZ2lhIFRQLiBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1678412163168!5m2!1svi!2s" width="500" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <p>Tong do dai lo trinh : 14km</p>
+                </div>
+
+                <div class="text-route">
+                    <h3>Lộ trình tối ưu:</h3>
+                    <p id="depot">Depot: </p>
+
+                    <p id="mcp-info" data-id="<%= tasks.mcps.split('-')[0] %>">MCP<%= tasks.mcps.split('-')[0]  %>:</p>
+                    <p id="mcp-info" data-id="<%= tasks.mcps.split('-')[1]  %>">MCP<%= tasks.mcps.split('-')[1]  %>:</p>
+                    <p id="mcp-info" data-id="<%= tasks.mcps.split('-')[2]  %>">MCP<%= tasks.mcps.split('-')[2]  %>:</p>
+
+                    <p id="disposal-facility">Disposal Facility: </p>
+
+                    <div class="staff-assignment">
+                        <h3>Phan cong Janitor:</h3>
+                        <br>
+                        <table>
+                            <thead style="color: rgb(108, 179, 87);">
+                                <th>MCP</th>
+                                <th>Nhân viên 1</th>
+                                <th>Nhân viên 2</th>
+                                <th>Nhân viên 3</th>
+                                <th>Trạng thái </th>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th>MCP<%= tasks.mcps.split('-')[0] %></th>
+                                    <%  const arrJanitor = staffs.filter(e => e.staffId[0] == 'J')
+                                        let index0 = tasks.mcps.split('-')[0]
+                                        for(let i = 0; i < 3; i++){
+                                            let idxRandom = (i + Number(index0)) % arrJanitor.length %>
+                                        <th><%= arrJanitor[idxRandom].name %> - <%= arrJanitor[idxRandom].staffId %></th>
+                                    <% } %>
+                                    <th style="color: red;">Chưa diễn ra</th>
+                                </tr>
+                                <tr>
+                                    <th>MCP<%= tasks.mcps.split('-')[1] %></th>
+                                    <%  
+                                        let index1 = tasks.mcps.split('-')[1]
+                                        for(let i = 0; i < 3; i++){
+                                            let idxRandom = (i + Number(index1)) % arrJanitor.length 
+                                    %>
+                                        <th><%= arrJanitor[idxRandom].name %> - <%= arrJanitor[idxRandom].staffId %></th>
+                                    <% } %>
+                                    <th style="color: red;">Chưa diễn ra</th>
+                                </tr>
+                                <tr>
+                                    <th>MCP<%= tasks.mcps.split('-')[2] %></th>
+                                    <%
+                                        let index2 = tasks.mcps.split('-')[2]
+                                        for(let i = 0; i < 3; i++){
+                                            let idxRandom = (i + Number(index2)) % arrJanitor.length 
+                                    %>
+                                        <th><%= arrJanitor[idxRandom].name %> - <%= arrJanitor[idxRandom].staffId %></th>
+                                    <% } %>
+                                    <th style="color: red;">Chưa diễn ra</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-back-route"><a href="/home-page">Quay lai</a></button>
+            <button id="btn-sending-route">Gui thong bao</button>
+            <button id="btn-confirm-route">Xac nhan</button>
+        </div>
+        <div class="successful-save">
+            <span><i class="fa-regular fa-circle-check"></i></span>
+            <p></p>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <div class="line">
+            <span class="line"></span>
+        </div>
+        
+        <div class="footer">
+            <div class="social-icon">
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+            </div>
+
+            <div class="copyright">
+                <p>Copyright <span><i class="fa-regular fa-copyright"></i></span> 2023 UWC 2.0</p>
+            </div>
+
+            <div class="contact">
+                <p><span><i class="fa-solid fa-phone"></i></span> 0123456789</p>
+                <p><span><i class="fa-solid fa-envelope"></i></span>    uwc2_0@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+    <script type="module">
+        
+        import MCP from '/public/MCP.js'
+        import Depot from '/public/Depot.js'
+
+        const MCPidEle = document.querySelectorAll('#mcp-info');
+        let sumMCPid = 1;
+        MCPidEle.forEach(e => {
+            let MCPid = e.getAttribute('data-id');
+            sumMCPid *= MCPid;
+            e.innerHTML += " " + MCP[MCPid];
+        })
+
+        // Depot and disposal facility
+        
+        const depotEle = document.getElementById('depot');
+        let index = sumMCPid % (Depot.length);
+        depotEle.innerHTML += Depot[index];
+
+        const disposalFacilityEle = document.getElementById('disposal-facility');
+        let index2 = (sumMCPid + 1) % (Depot.length);
+        disposalFacilityEle.innerHTML += Depot[index2];
+
+
+
+    </script>
+    <script src="/utils/detailTask.js"></script>
+    <script src="https://kit.fontawesome.com/6cade567e0.js" crossorigin="anonymous"></script>
+</body>
+</html>

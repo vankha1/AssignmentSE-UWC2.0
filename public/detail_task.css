@@ -1,0 +1,97 @@
+.detail-task-interface{
+    background-color: #FFDFC1;
+    margin: auto;
+    width: 100%;
+    height: 600px;
+    /* display: none; */
+}
+
+.detail-task-interface .info-task-staff {
+    display: flex;
+    align-items: center;
+    justify-content: space-around ;
+    font-weight: bold;
+}
+.detail-task-interface .info-task-staff .col-1,
+.detail-task-interface .info-task-staff .col-2,
+.detail-task-interface .info-task-staff .col-3{
+    margin-top: 20px;
+}
+.detail-task-interface .line { 
+    margin-top: 10px;
+} 
+
+.detail-task-interface .line span {
+    width: 80%;
+    height: 0px;
+    margin: auto; /* make the line center */
+    border: 1px solid black;
+    background-color: #000000;
+    display: block;
+} 
+
+.detail-task-interface .detail-route {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.detail-task-interface .detail-route .staff-assignment{
+    margin-top: 20px;
+}
+.detail-task-interface .text-route .staff-assignment table{
+    border-collapse: collapse;
+    width: 700px;
+    border-radius: 10px;
+    overflow: hidden;  /* This makes border-radius work*/
+}
+.detail-task-interface .text-route .staff-assignment table thead,
+.detail-task-interface .text-route .staff-assignment table tr{  
+    width: 800px;
+    height: 40px;
+}
+
+.detail-task-interface .text-route .staff-assignment table thead,
+.detail-task-interface .text-route .staff-assignment table tbody tr:nth-child(2n ){
+    background-color: #8FD5FC;
+}
+
+.detail-task-interface .text-route .staff-assignment table tbody tr:nth-child(2n + 1){
+    background-color: #0DA8FE;
+} 
+
+.detail-task-interface button {
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: rgb(10, 222, 10);
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+}
+.detail-task-interface #btn-back-route{
+    position: absolute;
+    bottom: 15%;
+    left: 10%;
+}
+.detail-task-interface #btn-back-route a {
+    text-decoration: none;
+    color: #000000;
+}
+.detail-task-interface #btn-sending-route{
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+}
+.detail-task-interface #btn-confirm-route{
+    display: none;
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+}
+.detail-task-interface .detail-route .map-route {
+    margin-left: 20px;
+}
+.detail-task-interface .detail-route .map-route p {
+    font-weight: bold;
+    margin-top: 10px;
+}

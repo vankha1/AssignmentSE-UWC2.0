@@ -1,0 +1,370 @@
+/* Create new task dialog----------------------- */
+
+.dialog-interface{
+    /* display: none; Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    transition: .5s;
+}
+.create-task-dialog {
+    position: absolute;
+    top:45%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9fa;
+    width: 420px;
+    height: 330px;
+    border-radius: 10px;
+    padding-right: 40px;
+}
+.create-task-dialog i{
+    position: absolute;
+    right: 5%;
+    top: 4.5%;
+    font-size: 20px;
+}
+.create-mcp h2,
+.create-task-dialog h2 {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+.create-task-dialog .task-id{
+    position: absolute;
+    top:20%;
+    left: 10%;
+}
+
+.create-task-dialog .task-id input {
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+.create-task-dialog .create-date {
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+
+.create-task-dialog .create-date input{
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+.create-task-dialog #shift {
+    position: absolute;
+    top: 20%;
+    left: 65%;
+    width: 120px;
+    height: 37px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(178, 178, 178);
+}
+.create-task-dialog #collector {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 210px;
+    height: 37px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(178, 178, 178);
+}
+.create-task-dialog #vehicle {
+    position: absolute;
+    top: 35%;
+    left: 65%;
+    width: 120px;
+    height: 38px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(178, 178, 178);
+}
+.create-task-dialog .routine-code{
+    position: absolute;
+    top: 70%;
+    left: 10%;
+}
+.create-task-dialog .routine-code input{
+    height: 25px;
+    border-radius: 10px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+.create-task-dialog .mcp-of-routine{
+    position: absolute;
+    top: 80%;
+    left: 10%;
+}
+.create-task-dialog .mcp-of-routine input {
+    height: 25px;
+    border-radius: 10px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+
+.create-task-dialog #btn-continue{
+    position: absolute;
+    top: 85%;
+    left: 80%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(10, 222, 10);
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/* Create new MCP ------------------------ */
+
+.create-mcp {
+    display: none;
+    position: absolute;
+    top:45%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9fa;
+    width: 550px;
+    height: 380px;
+    border-radius: 10px;
+}
+.create-mcp .mcp{
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.create-mcp .mcp #staff {
+    width: 150px;
+    height: 35px;
+    border-radius: 10px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+    margin-left: 5px;
+}
+
+.create-mcp button{
+    padding: 12px 12px;
+    border-radius: 10px;
+    background-color: rgb(10, 222, 10);
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 5px;
+}
+
+.create-mcp .mcp label span {
+    font-size: 15px;
+    color: gray;
+}
+
+.create-mcp #back {
+    position: absolute;
+    top: 80%;
+    left: 8%;
+}
+
+.create-mcp #save-task {
+    position: absolute;
+    top: 80%;
+    left: 70%;
+}
+
+/* Edit Task --------- */
+.edit-task-dialog {
+    position: absolute;
+    top:45%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9fa;
+    width: 420px;
+    height: 330px;
+    border-radius: 10px;
+    padding-right: 40px;
+}
+.edit-task-dialog i{
+    position: absolute;
+    right: 5%;
+    top: 4.5%;
+    font-size: 20px;
+}
+.edit-mcp h2,
+.edit-task-dialog h2 {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+.edit-task-dialog .task-id{
+    position: absolute;
+    top:20%;
+    left: 10%;
+}
+
+.edit-task-dialog .task-id input {
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+.edit-task-dialog .edit-date {
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+
+.edit-task-dialog .edit-date input{
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+.edit-task-dialog #shift {
+    position: absolute;
+    top: 20%;
+    left: 65%;
+    width: 120px;
+    height: 37px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(178, 178, 178);
+}
+.edit-task-dialog #collector {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 210px;
+    height: 37px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(178, 178, 178);
+}
+.edit-task-dialog #vehicle {
+    position: absolute;
+    top: 35%;
+    left: 65%;
+    width: 120px;
+    height: 38px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(178, 178, 178);
+}
+.edit-task-dialog .routine-code{
+    position: absolute;
+    top: 70%;
+    left: 10%;
+}
+.edit-task-dialog .routine-code input{
+    height: 25px;
+    border-radius: 10px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+.edit-task-dialog .mcp-of-routine{
+    position: absolute;
+    top: 80%;
+    left: 10%;
+}
+.edit-task-dialog .mcp-of-routine input {
+    height: 25px;
+    border-radius: 10px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid rgb(178, 178, 178);
+}
+.edit-task-dialog .routine-code input::placeholder,
+.edit-task-dialog .mcp-of-routine input::placeholder{
+    color: #e6e6e6;
+}
+.edit-task-dialog #btn-continue-edit{
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(10, 222, 10);
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+
+
+
+
+
+/* Delete Task Dialog */
+
+.delete-task-dialog{
+    position: absolute;
+    top:45%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9fa;
+    width: 420px;
+    height: 250px;
+    border-radius: 15px;
+    padding-right: 40px;
+}
+
+.delete-task-dialog .content-of-dialog{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 300px;
+}
+
+.delete-task-dialog .content-of-dialog i {
+    font-size: 30px;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+.delete-task-dialog .content-of-dialog p{
+    font-size: 13px;
+    color: gray;
+    margin-top: 10px;
+}
+.delete-task-dialog .content-of-dialog button{
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    padding: 12px 12px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.delete-task-dialog .content-of-dialog #confirm-delete{
+    border: 1px solid rgb(106, 241, 106);
+    background-color: white;
+    color: rgb(106, 241, 106);
+    margin-right: 30px;
+}
+.delete-task-dialog .content-of-dialog #cancel-delete{
+    border: none;
+    background-color: rgb(232, 66, 66);
+    color: white;
+    margin-left: 30px;
+}

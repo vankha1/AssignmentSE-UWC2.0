@@ -1,0 +1,179 @@
+<%- include('header') -%>
+
+<div class="dialog-interface edit-staff-interface">
+    <div class="edit-staff-dialog">
+        <h2>Chỉnh sửa nhân viên</h2>
+        <i  id="close-dialog" class="fa-solid fa-xmark"></i>
+        <form name="virtual-edit-staff-form" method="POST">
+            <span class="line"></span>
+            <div class="staff-info">
+                <div class="avatar-staff">
+                    <img src="public/img/avatar.png" alt="">
+                    <input type="file">
+                </div>
+
+                <div class="detail-staff-info">
+                    <p>ID: <input name="staffId" value="<%= staffs.staffId %>" type="text"></p>
+                    <p>Mã CCCD:  <input name="CCCD" value="<%= staffs.CCCD %>" type="text"></p>
+                    <p>Tên: <input name="name" value="<%= staffs.name %>" type="text"></p>
+                    <p>Giới tính:
+                        <!-- Putting the name attribute (the same name) to tag input makes only-one-choosen functionality  -->
+                        <input type="radio" name="gender" value="Nam" checked>
+                        <label for="male">Nam</label> 
+                        <input type="radio" name="gender" value="Nữ" >
+                        <label for="female">Nữ</label>
+                        <input type="radio" name="gender" value="Khác" >
+                        <label for="other">Khác</label>
+                    </p>
+                    <p>Ngày sinh: <input name="dob" value="<%= staffs.dob %>" type="text"></p>
+                    <p>Số điện thoại: <input name="phoneNumber" value="<%= staffs.phoneNumber %>" type="text"></p>
+                    <p>Email: <input name="email" value="<%= staffs.email %>" type="text"></p>
+                    <p>Địa chỉ:<input name="address" value="<%= staffs.address %>" type="text"></p>
+                    <p>Vị trí:
+                        <input type="radio" name="position" value="Back Officer" checked>
+                        <label for="back_officer">Back Officer</label>
+                        <input type="radio" name="position" value="Collector" >
+                        <label for="collector">Collector</label>
+                        <br>
+                        <input type="radio" name="position" value="Janitor" >
+                        <label for="janitor">Janitor</label>
+                    </p>
+                </div>
+            </div>
+            <button type="submit" id="save-edit-staff">Luu</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- Delete Staff UI -->
+<div class="dialog-interface delete-staff-interface">
+    <div class="delete-staff-dialog">
+        <div class="content-of-dialog">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <h2>Xóa nhân viên này</h2>
+            <p>Bạn sẽ không thể khôi phục nhân viên này</p>
+            
+            <button id="confirm-delete">Xác nhận</button>
+            <button id="cancel-delete">Hủy bỏ</button>
+        </div>
+    </div>
+</div>
+<form name="virtual-delete-staff-form" method="POST"></form>
+
+
+<main>
+    <div class="staff-info">
+        <div class="search-part">
+            <div class="position-staff">
+                <label for="#">Vị trí</label>
+                <select id="search-position-staff">
+                    <option value="0">Chon vi tri</option>
+                    <option value="1">Back Officer</option>
+                    <option value="2">Collector</option>
+                    <option value="3">Janitor</option>
+                </select>
+            </div>
+            <div class="searching-staff">
+                <label for="#">Tìm kiếm</label>
+                <input id="id-name-staff" type="text" placeholder="ID hoặc tên nhân viên">
+            </div>
+            <button id="btn-search">Tìm kiếm</button>
+            <button id="btn-search-reset">Reset</button>
+        </div>
+        
+        <table id="second-table">
+            <thead>
+                <th>ID<span></span></th>
+                <th>Họ và tên<span></span></th>
+                <th>Giới tính<span></span></th>
+                <th>Email<span></span></th>
+                <th>Vị trí<span></span></th>
+                <th>Tùy chọn</th>
+            </thead>
+            
+            <tbody>
+                <% staffs.forEach(function(ele){ %>
+                <tr>
+                    <th><%= ele.staffId %></th>
+                    <th><%= ele.name %></th>
+                    <th><%= ele.gender %></th>
+                    <th><%= ele.email %></th>
+                    <th><%= ele.position %></th>
+                    <th>
+                        <a style="text-decoration: none;" href="#">
+                            <i style="color: black;" data-id="<%= ele._id %>" id="edit-btn" class="fa-solid fa-pen"></i>
+                        </a>
+
+                        <a style="text-decoration: none;" href="/staff/<%= ele._id %>">
+                            <i style="color: black;" data-id="<%= ele._id %>" id="profile-btn" class="fa-solid fa-user"></i>
+                        </a>
+
+                        <a style="text-decoration: none;" href="#">
+                            <i data-id="<%= ele._id %>" id="delete-btn" class="fa-solid fa-trash"></i>
+                        </a>
+                        
+                    </th>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <div class="flip-flop-filtering">
+            <p><span id="order-number-filter-2">1</span>-<span id="number-of-rows-filter-2">10</span> of <span id="number-of-pages-filter-2">50</span></p>
+            <button id="previous-table-filter-2"><i class="fa-solid fa-angle-left"></i></button>
+            <button  id="next-table-filter-2"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+
+
+        <div class="flip-flop-part">
+            <p><span id="order-number-2">1</span>-<span id="number-of-rows-2">10</span> of <span id="number-of-pages-2">50</span></p>
+            <button id="previous-table-2"><i class="fa-solid fa-angle-left"></i></button>
+            <button  id="next-table-2"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+
+    <div class="successful-save-2">
+        <span><i class="fa-regular fa-circle-check"></i></span>
+        <p></p>
+    </div>
+</main>
+
+ <!-- Footer -->
+ <footer>
+    <div class="line">
+        <span class="line"></span>
+    </div>
+    
+    <div class="footer">
+        <div class="social-icon">
+            <a href="#">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+        </div>
+
+        <div class="copyright">
+            <p>Copyright <span><i class="fa-regular fa-copyright"></i></span> 2023 UWC 2.0</p>
+        </div>
+
+        <div class="contact">
+            <p><span><i class="fa-solid fa-phone"></i></span> 0123456789</p>
+            <p><span><i class="fa-solid fa-envelope"></i></span>    uwc2_0@gmail.com</p>
+        </div>
+    </div>
+</footer>
+<script src="utils/changeTableStaff.js"></script>
+<script src="utils/filterStaff.js"></script>
+<script src="utils/optionStaff.js"></script>
+<script src="https://kit.fontawesome.com/6cade567e0.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background: url(/public/img/virtual.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'B612', sans-serif;
+        }
+        .dialog-interface{
+            /* display: none; Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            transition: .5s;
+        }
+        .edit-staff-dialog {
+            position: absolute;
+            top:45%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            background-color: #f9f9fa;
+            width: 550px;
+            height: 420px;
+            border-radius: 10px;
+            padding-right: 40px;
+        }
+        .edit-staff-dialog h2 {
+            margin-left: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .edit-staff-dialog #close-dialog{
+            position: absolute;
+            right: 5%;
+            top: 5%;
+            font-size: 25px;
+        }
+        .edit-staff-dialog .line {
+            position: absolute;
+            top: 12%;
+            left: 5%;
+            width: 90%;
+            height: 0px;
+            margin: auto; /* make the line center */
+            border: 1px solid black;
+            background-color: #000000;
+            display: block;
+        }
+        .edit-staff-dialog .staff-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }  
+        .edit-staff-dialog .staff-info .avatar-staff {
+            width: 40%;
+            margin-left: 30px;
+        }
+        .edit-staff-dialog .staff-info .avatar-staff img {
+            width: 180px;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info{
+            width: 60%;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p {
+            position: relative;
+            margin-bottom: 5px;
+        }
+
+        .edit-staff-dialog .staff-info .detail-staff-info p #field {
+            font-weight: bold;
+            position: absolute;
+            top : 0;
+        }
+        /* nth - child must be used for element which has child. Here p has #information which is child. But when you put nth-child behind #information, 'cause it doesn't have child --> not working */
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(1) #information {
+            padding-left: 30px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(2) #information {
+            padding-left: 85px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(3) #information {
+            padding-left: 40px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(4) #information {
+            padding-left: 80px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(5) #information {
+            padding-left: 90px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(6) #information {
+            padding-left: 115px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(7) #information {
+            padding-left: 55px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(8) #information {
+            padding-left: 65px ;
+        }
+        .edit-staff-dialog .staff-info .detail-staff-info p:nth-child(9) #information {
+            padding-left: 45px ;
+        }
+    </style>
+    <title><%= text %></title>
+</head>
+<body>
+    
+<div class="dialog-interface edit-staff-interface">
+    <div class="edit-staff-dialog">
+        <h2>Thông tin nhân viên</h2>
+        <i style="cursor: pointer;" id="close-dialog" class="fa-solid fa-xmark"></i>
+        <form method="POST">
+            <span class="line"></span>
+            <div class="staff-info">
+                <div class="avatar-staff">
+                    <img src="/public/img/avatar.png" alt="">
+                    <!-- <input type="file"> -->
+                </div>
+
+                <div class="detail-staff-info">
+                    <p> <span id="field"> ID:</span> <span id="information"><%= staffs.staffId %></span> </p>
+                    <p> <span id="field"> Mã CCCD:</span>  <span id="information"><%= staffs.CCCD %></span> </p>
+                    <p> <span id="field"> Tên:</span> <span id="information"> <%= staffs.name %></span></p>
+                    <p> <span id="field"> Giới tính:</span> <span id="information"> <%= staffs.gender %></span></p>
+                    <p> <span id="field"> Ngày sinh:</span> <span id="information"><%= staffs.dob %></span> </p>
+                    <p> <span id="field"> Số điện thoại:</span> <span  id="information"></span><%= staffs.phoneNumber %></span> </p>
+                    <p> <span id="field"> Email:</span> <span id="information"><%= staffs.email %></span> </p>
+                    <p> <span id="field"> Địa chỉ:</span> <span id="information"><%= staffs.address %></span> </p>
+                    <p> <span id="field"> Vị trí:</span> <span id="information"><%= staffs.position %></span> </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    const editStaffInterface = document.querySelector('.edit-staff-interface')
+    const closeDialogEle = document.getElementById('close-dialog');
+
+    closeDialogEle.addEventListener('click', () => {
+        editStaffInterface.style.display = "none";
+        location.replace("/staff")
+    })
+
+    window.onclick = function(event) {
+        if (event.target == editStaffInterface) {
+            editStaffInterface.style.display = "none";
+            location.replace("/staff")
+        }
+    }
+</script>
+<!-- <script src="utils/optionStaff.js"></script> -->
+<script src="https://kit.fontawesome.com/6cade567e0.js" crossorigin="anonymous"></script>
+</body>
+</html>
