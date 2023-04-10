@@ -80,8 +80,8 @@ confirmDelTaskBtn.addEventListener('click', () => {
     saveNotice.style.display = "block";
     virtualDelForm.action = '/task/' + getTaskId + '?_method=DELETE';
     virtualDelForm.submit();
-    // setTimeout(() => {
+    setTimeout(() => {
+        location.href = '/task';
+    }, 5000);
     saveNoticeText.textContent = "Xóa thành công";
-    // }, 5000);
-    // autoClose();
 })

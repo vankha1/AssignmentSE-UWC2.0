@@ -90,3 +90,4 @@ tableRows.forEach((element) => {
     })
 })
 
+document.querySelectorAll(".header ul li a")[0].classList.add("active");

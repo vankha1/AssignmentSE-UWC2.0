@@ -81,7 +81,7 @@ app.put('/task/:id', (req, res, next) => {
 
 app.delete('/task/:id', (req, res, next) => {
     Task.deleteOne({_id: req.params.id})
-        .then(() => res.redirect('back'))
+        .then(() =>res.redirect('back'))
         .catch(next)
 })
 

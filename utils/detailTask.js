@@ -24,3 +24,5 @@ function autoClose(){
         location.replace('/home-page');
     }, 5000);
 }
+
+document.querySelectorAll(".header ul li a")[0].classList.add("active");

@@ -7,7 +7,11 @@
                 <div class="col-1">
                     <p>ID task : <%= tasks.taskId %></p>
                     <p>Tai xe : <%= tasks.nameTake %></p>
-                    <p>ID nhan vien : <%= staffs.find(e => e.name === tasks.nameTake && e.position === "Collector").staffId  %></p>
+                    <% if (staffs.find(e => e.name === tasks.nameTake && e.position === "Collector")){ %>
+                        <p>ID nhan vien : <%= staffs.find(e => e.name === tasks.nameTake && e.position === "Collector").staffId %></p>
+                    <%} else { %>
+                        <p>ID nhan vien : C1</p>
+                    <%}%>
                 </div>
                 <div class="col-2">
                     <p><i class="fa-regular fa-calendar-days"></i> Ngày: <%= tasks.dateStart %></p>

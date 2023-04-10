@@ -76,3 +76,4 @@ preTableEle2.addEventListener('click', () => {
 nextTableEle2.addEventListener('click', () => {
     changePage2(curPage2 + 1);
 })
+document.querySelectorAll(".header ul li a")[1].classList.add("active");
