@@ -58,13 +58,12 @@ function setCurrentPage(pageNum, tempArr){
 function changeTable(tempArr){
     setCurrentPage(1, tempArr);
 
-    previousBtn.addEventListener('click', () => {
+    previousBtn.onclick = () => {
         setCurrentPage(currentPage - 1, tempArr);
-    })
-
-    nextBtn.addEventListener('click', () => {
+    }
+    nextBtn.onclick = () => {
         setCurrentPage(currentPage + 1, tempArr);
-    })
+    }
 }
 
 btnEle.addEventListener('click', () => {

@@ -58,20 +58,18 @@ function setCurrentPage(pageNum, tempArr){
     orderNums.innerHTML = lowerBoundItem + 1;
     numRows.innerHTML = pageNum === Math.ceil(numberOfItems / itemPerPage) ? tempArr.length : upperBoundItem;
 }
+
+// let listenersAdded = false;
+
 function changeTable(tempArr){
-    // console.log(tempArr);
     setCurrentPage(1, tempArr);
-
-    previousBtn.addEventListener('click', () => {
+    previousBtn.onclick = () => {
         setCurrentPage(currentPage - 1, tempArr);
-    })
-    nextBtn.addEventListener('click', () => {
-        // console.log(currentPage);
+    }
+    nextBtn.onclick = () => {
         setCurrentPage(currentPage + 1, tempArr);
-        // console.log(currentPage);
-    })
+    }
 }
-
 
 btnSearchStaff.addEventListener('click', () => {
     // console.log(currentPage);
@@ -120,7 +118,6 @@ btnSearchStaff.addEventListener('click', () => {
     numberOfItems = num;
     sumRows.innerHTML = numberOfItems;
     changeTable(tempArr);
-    
 })
 
 btnSearchResetStaff.addEventListener('click', () => {
