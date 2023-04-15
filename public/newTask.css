@@ -56,7 +56,6 @@
     left: 10%;
 }
 
-
 .create-task-dialog .create-date input{
     width: 200px;
     height: 35px;
@@ -75,16 +74,7 @@
     border-radius: 10px;
     border: 1px solid rgb(178, 178, 178);
 }
-.create-task-dialog #collector {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    width: 210px;
-    height: 37px;
-    padding-left: 10px;
-    border-radius: 10px;
-    border: 1px solid rgb(178, 178, 178);
-}
+
 .create-task-dialog #vehicle {
     position: absolute;
     top: 35%;
@@ -131,7 +121,72 @@
     font-weight: bold;
     font-size: 17px;
 }
+.create-task-dialog #collector {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 210px;
+    height: 37px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(178, 178, 178);
+    z-index: 1;
+    outline: none;
+}
+/* .create-task-dialog #collector option {
+    z-index: -2;
+} */
 
+.create-task-dialog #collector-option {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    width: 45%;
+    top: 62%;
+    height: 70%;
+    left: 10%;  
+    z-index: 99;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+.create-task-dialog #collector-option .collector-info{
+    position: absolute;
+    left: 0px;
+    width: 95%;
+    padding-left: 10px;
+    background: white;
+    z-index:100;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid gray;
+}
+.create-task-dialog #collector-option .collector-info:hover {
+    background: rgb(0, 140, 255);
+    cursor: pointer;
+}
+.create-task-dialog #collector-option .collector-info img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.create-task-dialog #collector-option-1 {
+    border-radius: 10px 10px 0px 0px;
+}
+.create-task-dialog #collector-option-2 {
+    top: 22%;
+}
+.create-task-dialog #collector-option-3 {
+    top: 45%;
+}
+.create-task-dialog #collector-option-4 {
+    top: 67%;
+}
+.create-task-dialog #collector-option-5 {
+    top: 89%;
+    border-radius: 0px 0px 10px 10px;
+}
 /* Create new MCP ------------------------ */
 
 .create-mcp {
