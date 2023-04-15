@@ -1,43 +1,41 @@
 // Create new Task
-const createTaskEle = document.querySelector('.create-task-interface');
-const btnCreateTask = document.getElementById('creat-task');
-const closeDialogEle = document.getElementById('close-dialog');
-const titleCreateDialog = document.querySelector('.create-task-interface .create-task-dialog h2');
+const createTaskEle = document.querySelector(".create-task-interface");
+const btnCreateTask = document.getElementById("creat-task");
+const closeDialogEle = document.getElementById("close-dialog");
+const titleCreateDialog = document.querySelector(
+  ".create-task-interface .create-task-dialog h2"
+);
 
-btnCreateTask.addEventListener('click', () => {
-    createTaskEle.style.display = "block";
-    titleCreateDialog.innerHTML = "Tạo mới nhiệm vụ";
-    // When the user clicks anywhere outside of the dialog, close it
-    window.onclick = function(event) {
-        if (event.target == createTaskEle) {
-            // console.log(event.target);
-            createTaskEle.style.display = "none";
-        }
+btnCreateTask.addEventListener("click", () => {
+  createTaskEle.style.display = "block";
+  titleCreateDialog.innerHTML = "Tạo mới nhiệm vụ";
+  // When the user clicks anywhere outside of the dialog, close it
+  window.onclick = function (event) {
+    if (event.target == createTaskEle) {
+      // console.log(event.target);
+      createTaskEle.style.display = "none";
     }
-    closeDialogEle.addEventListener('click', () => {
-        console.log(2);
-        createTaskEle.style.display = "none";
-    })
-})
-
-
-
-
+  };
+  closeDialogEle.addEventListener("click", () => {
+    console.log(2);
+    createTaskEle.style.display = "none";
+  });
+});
 
 // Save new task
-const createMcpEle = document.querySelector('.create-mcp');
-const createTaskDialogEle = document.querySelector('.create-task-dialog');
-const btnBack = document.getElementById('back');
-const btnSaveTask = document.getElementById('save-task');
-const btnContinue = document.getElementById('btn-continue');
-const saveNotice = document.querySelector('.successful-save');
-const saveNoticeText = document.querySelector('.successful-save p');
+const createMcpEle = document.querySelector(".create-mcp");
+const createTaskDialogEle = document.querySelector(".create-task-dialog");
+const btnBack = document.getElementById("back");
+const btnSaveTask = document.getElementById("save-task");
+const btnContinue = document.getElementById("btn-continue");
+const saveNotice = document.querySelector(".successful-save");
+const saveNoticeText = document.querySelector(".successful-save p");
 // console.log(saveNoticeText.textContent)
 
-btnContinue.addEventListener('click', () => {
-    createMcpEle.style.display = "block";
-    createTaskDialogEle.style.display = "none";
-})
+btnContinue.addEventListener("click", () => {
+  createMcpEle.style.display = "block";
+  createTaskDialogEle.style.display = "none";
+});
 
 // btnBack.addEventListener('click', () => {
 //     createMcpEle.style.display = "none";
@@ -51,8 +49,31 @@ btnContinue.addEventListener('click', () => {
 //     autoClose();
 // })
 
-function autoClose(){
-    timeout = setTimeout(() => {
-        saveNotice.style.display = "none";
-    }, 5000);
+function autoClose() {
+  timeout = setTimeout(() => {
+    saveNotice.style.display = "none";
+  }, 5000);
+}
+let isAppear = false;
+
+// Toggle the select option
+document.getElementById("collector").onclick = () => {
+    if (isAppear) {
+        document.getElementById("collector-option").style.display = "none";
+        isAppear = false;
+    } else {
+        document.getElementById("collector-option").style.display = "block";
+        isAppear = true;
+    }
+}
+
+function closeCollector(name){
+    document.getElementById("collector").value = name;
+    document.getElementById("collector-option").style.display = "none";
+}
+
+// Handle selected option 
+function handleclick(event) {
+    event.preventDefault()
+    event.target.focus();
 }
