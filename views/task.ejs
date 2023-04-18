@@ -8,7 +8,7 @@
         <h1>Danh sách nhiệm vụ</h1>
         <div class="filter-part">
             <div class="search-input">
-                <input id="search" type="text" placeholder="Tìm kiếm">
+                <input id="search" type="text" placeholder="Tìm kiếm" onkeyup="filter(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <input id="task-id" type="text" placeholder="ID nhiệm vụ">
@@ -16,360 +16,49 @@
             <input id="date" type="date" placeholder="Chọn ngày">
             <button id="btn-filter">Lọc</button>
         </div>
-        
-        <table id="first-table">
-            <thead>
-                <th>ID<span></span></th>
-                <th>Tên<span></span></th>
-                <th>Trạng thái<span></span></th>
-                <th>Ngày<span></span></th>
-                <th>Ca<span></span></th>
-                <th>Tùy chọn</th>
-            </thead>
-            
-            <tbody>
-                <% tasks.forEach(function(ele){ %>
-                    <tr data-id="<%= ele._id %>">
-                        <th><%= ele.taskId %></th>
-                        <th><%= ele.nameTake %></th>
-                        <th><%= ele.status %></th>
-                        <th><%= ele.dateStart %></th>
-                        <th><%= ele.shift %></th>
-                        <th>
-                            <!-- <a href="/task//edit"><i id="edit-btn" class="fa-solid fa-pen"></i></a> -->
-                            <a style="text-decoration: none;" href="#">
-                                <i style=" color: black;" data-id="<%= ele._id %>" id="edit-btn" class="fa-solid fa-pen"></i>
-                            </a>
-                            <a href="#" >
-                                <i  data-id="<%= ele._id %>" id="delete-btn" class="fa-solid fa-trash"></i>
-                            </a>
-                        </th>
-                    </tr>
-                <% }) %>
+        <form name="table-form" action="/task/handle-form-actions" method="POST">
+            <table id="first-table">
+                <thead>
+                    <th></th>
+                    <th>ID<span></span></th>
+                    <th>Tên<span></span></th>
+                    <th>Trạng thái<span></span></th>
+                    <th>Ngày<span></span></th>
+                    <th>Ca<span></span></th>
+                    <th>Tùy chọn</th>
+                </thead>
+                
+                <tbody>
+                    <% tasks.forEach(function(ele){ %>
+                        <tr data-id="<%= ele._id %>">
+                            <th><input style="transform: scale(1.25);" id="check" type="checkbox" value="<%= ele._id %>" name="taskIds[]"></th>
+                            <th><%= ele.taskId %></th>
+                            <th><%= ele.nameTake %></th>
+                            <th><%= ele.status %></th>
+                            <th><%= ele.dateStart %></th>
+                            <th><%= ele.shift %></th>
+                            <th>
+                                <!-- <a href="/task//edit"><i id="edit-btn" class="fa-solid fa-pen"></i></a> -->
+                                <a style="text-decoration: none;" href="#">
+                                    <i style=" color: black;" data-id="<%= ele._id %>" id="edit-btn" class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#" >
+                                    <i style=" color: red; margin-left: 10px;" data-id="<%= ele._id %>" id="delete-btn" class="fa-solid fa-trash"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div class="option-checkbox">
+                <select name="action" id="" required>
+                    <option value="">--Chọn hành động--</option>
+                    <option value="delete">Xóa</option>
+                </select>
 
-                <!-- <a href="/task/detail-task">More detail</a> -->
-<!--                 
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/5/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0003</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đã xong</th>
-                    <th>3/2/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0004</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đã xong</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0005</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/5/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/5/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/5/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0003</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đã xong</th>
-                    <th>3/2/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0004</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0003</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/5/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0001</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0003</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đã xong</th>
-                    <th>3/2/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0004</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr> -->
-                <!-- <tr>
-                    <th>0002</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Chưa bắt đầu</th>
-                    <th>3/7/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr>
-                <tr>
-                    <th>0004</th>
-                    <th>Nguyễn Văn A</th>
-                    <th>Đang diễn ra</th>
-                    <th>3/4/2023</th>
-                    <th>Sáng</th>
-                    <th>
-                        <i id="edit-btn" class="fa-solid fa-pen"></i>
-                        <i id="delete-btn" class="fa-solid fa-trash"></i>
-                    </th>
-                </tr> -->
-            </tbody>
-        </table>
+                <button disabled id="sumbit-checkbox" type="submit">Thực hiện</button>
+            </div>
+        </form>
         
         <button id="creat-task">Tạo mới</button>
 
@@ -391,5 +80,28 @@
         <p></p>
     </div>
 </main>
+<script>
+    var taskItemsCheckBox = document.querySelectorAll('input[name="taskIds[]"]');
+    // console.dir(taskItemsCheckBox);
+    var tableForm = document.forms['table-form']
+    console.log(tableForm);
+    taskItemsCheckBox.forEach((taskItem) => {
+        taskItem.onchange = () => {
+            renderCheckSumbit();
+        }
+    })
 
+    const sumbitCheckBoxBtn = document.getElementById('sumbit-checkbox')
+    console.dir(sumbitCheckBoxBtn.disabled)
+    function renderCheckSumbit(){
+        var isCheckedLength = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        if (isCheckedLength > 0){
+            sumbitCheckBoxBtn.disabled = false;
+        }
+        else{
+            sumbitCheckBoxBtn.disabled = true;
+        }
+        // console.log(isCheckedLength);
+    }
+</script>
 <%- include('footer') -%>

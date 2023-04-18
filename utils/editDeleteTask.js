@@ -57,14 +57,24 @@ closeEditDialogEle.addEventListener('click', () => {
 })
 
 
+// console.dir(document.querySelectorAll('input[type="checkbox"]'));
 
+let checkboxes = document.querySelectorAll('input[type="checkbox"]'), numChecked = 0;
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('click', function(event) {
+        event.stopPropagation();
+        // Do something
+        if (checkbox.checked) numChecked++;
+        else numChecked--;
+    });
 
+});
 
 // Delete button part ----------------------------------
 
 for (let i = 0; i < deleteTaskBtn.length; i++){
     deleteTaskBtn[i].addEventListener('click', () => {
-        event.stopPropagation(); // avoid change to detail task when clicking delete button
+        event.stopPropagation(); // avoid direct to detail task when clicking delete button
         deleteTaskEle.style.display = "block";
         // console.log(deleteTaskBtn[i].getAttribute('data-id'));
         getTaskId = deleteTaskBtn[i].getAttribute('data-id');
@@ -73,6 +83,7 @@ for (let i = 0; i < deleteTaskBtn.length; i++){
 
 cancelDelTaskBtn.addEventListener('click', () => {
     deleteTaskEle.style.display = "none";
+    console.log(numChecked)
 })
 
 confirmDelTaskBtn.addEventListener('click', () => {

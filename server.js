@@ -71,6 +71,18 @@ app.post('/task/new-task', (req, res) => {
     task.save();
     res.redirect('/task');
 })
+// [POST] /task/handle-form-actions
+app.post('/task/handle-form-actions', (req,res, next) => {
+    switch(req.body.action){
+        case 'delete':
+            Task.deleteMany({_id: {$in: req.body.taskIds}})
+                .then(() => res.redirect('back'))
+                .catch(next)
+            break;
+        default:
+            res.redirect('/task')
+    }
+})
 
 
 app.put('/task/:id', (req, res, next) => {
