@@ -4,4 +4,4 @@ Deploy at https://busy-red-pike-cuff.cyclic.app with account used for accessing:
 ## Tech  
 * I used HTML-CSS, JS for front-end and NodeJS (Express), Mongodb for back-end.
 * Website meets main requirements and has CRUD data.
-
+* I have updated more functionalities for searching task and deleting task based checkbox
