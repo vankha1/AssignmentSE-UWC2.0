@@ -1,5 +1,5 @@
 # AssignmentSE-UWC2.0
-* UWC2.0 is an open-source application for a Software Engineering project to resolve the urban waste management problem. This system can store and manage employee information including Back Officer (Officer in charge), Collector (Driver of collection trucks) and Janitor (collector of garbage in MCP). Furthermore, it can also provide information about time for each employee's task and create an optimal route (using Google Map API) for each collector's task.
+UWC2.0 is an open-source application for a Software Engineering project to resolve the urban waste management problem. This system can store and manage employee information including Back Officer (Officer in charge), Collector (Driver of collection trucks) and Janitor (collector of garbage in MCP). Furthermore, it can also provide information about time for each employee's task and create an optimal route (using Google Map API) for each collector's task.
 # User Interface
 ![](https://github.com/hyla167/L02-Group-4/blob/master/demo/demo_homepage.png)
 ![](https://github.com/hyla167/L02-Group-4/blob/master/demo/demo_task.png)
@@ -32,4 +32,4 @@ To use the application, you will need to follow these steps:
 4. User profile and message not yet implemented
 
 ## Deployment
-Deploy at https://busy-red-pike-cuff.cyclic.app (but it was so bad 'cause this was the first time I have worked with NodeJS) with account used for accessing: vovankha2003@gmail.com and password : admin123
+Deploy at https://busy-red-pike-cuff.cyclic.app (but it was so bad 'cause this was the first time I have worked with NodeJS) with account used for accessing: vovankha2003@gmail.com and password : `admin123`
