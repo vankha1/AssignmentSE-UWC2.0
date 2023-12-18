@@ -1,5 +1,5 @@
 # AssignmentSE-UWC2.0
-Deploy at https://busy-red-pike-cuff.cyclic.app with account used for accessing: vovankha2003@gmail.com and password : admin123
+Deploy at https://busy-red-pike-cuff.cyclic.app (but it was so bad 'cause this was the first time I have worked with NodeJS) with account used for accessing: vovankha2003@gmail.com and password : admin123
 * This is source code about my Software-Engineering course assignment. The assignment is task and staff management with functionalities such as filter, view detail, create, update,...
 # User Interface
 ![](https://github.com/hyla167/L02-Group-4/blob/master/demo/demo_homepage.png)
