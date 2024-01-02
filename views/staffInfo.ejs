@@ -94,27 +94,29 @@
             
             <tbody>
                 <% staffs.forEach(function(ele){ %>
-                <tr>
-                    <th><%= ele.staffId %></th>
-                    <th><%= ele.name %></th>
-                    <th><%= ele.gender %></th>
-                    <th><%= ele.email %></th>
-                    <th><%= ele.position %></th>
-                    <th>
-                        <a style="text-decoration: none;" href="#">
-                            <i style="color: black;" data-id="<%= ele._id %>" id="edit-btn" class="fa-solid fa-pen"></i>
-                        </a>
+                    <% if (ele.isDeleted === false){ %>
+                        <tr>
+                            <th><%= ele.staffId %></th>
+                            <th><%= ele.name %></th>
+                            <th><%= ele.gender %></th>
+                            <th><%= ele.email %></th>
+                            <th><%= ele.position %></th>
+                            <th>
+                                <a style="text-decoration: none;" href="#">
+                                    <i style="color: black;" data-id="<%= ele._id %>" id="edit-btn" class="fa-solid fa-pen"></i>
+                                </a>
 
-                        <a style="text-decoration: none;" href="/staff/<%= ele._id %>">
-                            <i style="color: black;" data-id="<%= ele._id %>" id="profile-btn" class="fa-solid fa-user"></i>
-                        </a>
+                                <a style="text-decoration: none;" href="/staff/<%= ele._id %>">
+                                    <i style="color: black;" data-id="<%= ele._id %>" id="profile-btn" class="fa-solid fa-user"></i>
+                                </a>
 
-                        <a style="text-decoration: none;" href="#">
-                            <i data-id="<%= ele._id %>" id="delete-btn" class="fa-solid fa-trash"></i>
-                        </a>
-                        
-                    </th>
-                </tr>
+                                <a style="text-decoration: none;" href="#">
+                                    <i data-id="<%= ele._id %>" id="delete-btn" class="fa-solid fa-trash"></i>
+                                </a>
+                                
+                            </th>
+                        </tr>
+                    <% } %>
                 <% }) %>
             </tbody>
         </table>

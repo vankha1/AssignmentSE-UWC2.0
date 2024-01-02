@@ -29,6 +29,10 @@ const StaffSchema = new Schema({
     },
     staffId:{
         type: String,
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false,
     }
 }, {
     timestamps: true

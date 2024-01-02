@@ -12,6 +12,6 @@ router.post('/handle-form-actions', taskController.handleFormAction)
 
 router.put('/:id', taskController.updateTask)
 
-router.delete('/:id', taskController.deleteTask)
+router.post('/:id', taskController.deleteTask)
 
 module.exports = router;

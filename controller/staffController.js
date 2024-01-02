@@ -18,17 +18,20 @@ const getAllStaffs = async (req, res, next) => {
 };
 
 const getStaff = async (req, res, next) => {
-    try {
-        const staffs = await Staff.findById({ _id: req.params.id });
+  try {
+    const staffs = await Staff.findById({ _id: req.params.id });
 
-        res.render('viewStaff.ejs', {
-            staffs,
-            text: 'View profile'
-        })
-    } catch (err) {
-        
-    }
-}
+    res.render("viewStaff.ejs", {
+      staffs,
+      text: "View profile",
+    });
+  } catch (err) {
+    res.status(500).render("500.ejs", {
+      pageTitle: "Error !",
+      message: err.message,
+    });
+  }
+};
 
 const updateStaff = async (req, res, next) => {
   try {
@@ -45,7 +48,12 @@ const updateStaff = async (req, res, next) => {
 
 const deleteStaff = async (req, res, next) => {
   try {
-    await Staff.deleteOne({ _id: req.params.id });
+    // await Staff.deleteOne({ _id: req.params.id });
+    const staff = await Staff.findOne({ _id: req.params.id });
+
+    staff.isDeleted = true;
+
+    await staff.save();
 
     res.redirect("back");
   } catch (err) {

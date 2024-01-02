@@ -33,7 +33,11 @@
                         <tr data-id="<%= ele._id %>">
                             <th><input style="transform: scale(1.25);" id="check" type="checkbox" value="<%= ele._id %>" name="taskIds[]"></th>
                             <th><%= ele.taskId %></th>
-                            <th><%= ele.nameTake %></th>
+                            <% if (!ele.nameTake.isDeleted) { %>
+                                <th><%= ele.nameTake.name %></th>
+                            <% } else { %>
+                                <th style="color: red;">Deleted Staff</th>
+                            <% } %>
                             <th><%= ele.status %></th>
                             <th><%= ele.dateStart %></th>
                             <th><%= ele.shift %></th>

@@ -3,7 +3,7 @@ const Staff = require("../model/Staff");
 
 const getAllTasks = async (req, res, next) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find().populate('nameTake', 'name isDeleted');
 
     res.render("task.ejs", {
       tasks,
@@ -44,8 +44,18 @@ const getTaskDetail = async (req, res, next) => {
 const postNewTask = async (req, res, next) => {
   try {
     const formBody = { ...req.body };
+    // console.log(formBody)
     formBody.status = "Chưa diễn ra";
-    const task = new Task(formBody);
+
+    const staff = await Staff.find({ name: formBody.nameTake });
+
+    // console.log(staff);
+    // console.log(formBody);
+
+    const task = new Task({
+      ...formBody,
+      nameTake: staff[0]?._id,
+    });
     await task.save();
     res.redirect("/task");
   } catch (err) {
