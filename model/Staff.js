@@ -4,15 +4,12 @@ const Schema = mongoose.Schema;
 const StaffSchema = new Schema({
     CCCD: {
         type: String,
-        maxLength:255
     },
     address: {
         type: String,
-        maxLength:255
     },
     dob: {
         type: String,
-        maxLength:255
     },
     email: {
         type: String,
@@ -20,23 +17,18 @@ const StaffSchema = new Schema({
     },
     gender: {
         type: String,
-        maxLength:255
     },
     name: {
         type: String,
-        maxLength:255
     },
     phoneNumber: {
         type: String,
-        maxLength:255
     },
     position:{
         type: String,
-        maxLength:255
     },
     staffId:{
         type: String,
-        maxLength:255
     }
 }, {
     timestamps: true

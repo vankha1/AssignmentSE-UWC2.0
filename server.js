@@ -6,12 +6,12 @@ const bodyparser = require("body-parser");
 
 // const path = require('path');
 const session = require("express-session");
-const router = require("./route/login_route");
+const authRouter = require("./route/login_route");
+const taskRouter = require('./route/task');
+const staffRouter = require('./route/staff');
 
 // Import model Collector
 // const Collector = require('./model/Collector')
-const Task = require('./model/Task')
-const Staff = require('./model/Staff')
 
 // Connect DB
 const db = require('./config/db')
@@ -30,8 +30,9 @@ app.set('view engine', 'ejs')
 app.use(express.static(__dirname)); 
 
 // include route
-app.use('/login', router);
-
+app.use('/login', authRouter);
+app.use('/task', taskRouter);
+app.use('/staff', staffRouter);
 
 // override with POST having ?_method=PUT
 app.use(methodOverride('_method'))
@@ -52,94 +53,6 @@ app.get('/home-page', (req, res, next) => {
         text: 'Home Page'
     })
     
-})
-
-app.get('/task', (req, res, next) => {
-    Task.find({})
-            .then(tasks => res.render('task.ejs', {
-                tasks: tasks,
-                text: 'Dashboard'
-            }))
-            .catch(error => next(error));
-})
-
-
-app.post('/task/new-task', (req, res) => {
-    const formBody = {...req.body};
-    formBody.status = "Chưa diễn ra";
-    const task = new Task(formBody);
-    task.save();
-    res.redirect('/task');
-})
-// [POST] /task/handle-form-actions
-app.post('/task/handle-form-actions', (req,res, next) => {
-    switch(req.body.action){
-        case 'delete':
-            Task.deleteMany({_id: {$in: req.body.taskIds}})
-                .then(() => res.redirect('back'))
-                .catch(next)
-            break;
-        default:
-            res.redirect('/task')
-    }
-})
-
-
-app.put('/task/:id', (req, res, next) => {
-    Task.updateOne({_id: req.params.id}, req.body)
-        .then(() => res.redirect('back'))
-        .catch(next)
-})
-
-app.delete('/task/:id', (req, res, next) => {
-    Task.deleteOne({_id: req.params.id})
-        .then(() =>res.redirect('back'))
-        .catch(next)
-})
-
-
-app.get('/task/:id/detail', (req, res, next) => {
-    Promise.all([Task.findById(req.params.id), Staff.find({})])
-        .then(([tasks, staffs]) => {
-            res.render('detailTask', {
-                tasks: tasks,
-                staffs: staffs,
-                text: 'Detail Task'
-            })
-        })
-        .catch(next)
-})
-
-
-
-app.get('/staff', (req, res) => {
-    Staff.find({})
-            .then(staffs => res.render('staffInfo.ejs', {
-                staffs: staffs,
-                text: 'Staff'
-            }))
-            .catch(error => next(error));
-})
-
-app.get('/staff/:id', (req, res) => {
-    Staff.findById({_id:req.params.id})
-        .then(staffs => res.render('viewStaff.ejs', {
-            staffs: staffs,
-            text: 'View profile'
-        }))
-        .catch(error => next(error));
-})
-
-app.put('/staff/:id', (req, res, next) => {
-    Staff.updateOne({_id: req.params.id}, req.body)
-        .then(() => res.redirect('back'))
-        .catch(next)
-})
-
-app.delete('/staff/:id', (req, res, next) => {
-    Staff.deleteOne({_id: req.params.id})
-        .then(() => res.redirect('back'))
-        .catch(next)
 })
 
 app.listen(port, () => {
