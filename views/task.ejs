@@ -6,11 +6,20 @@
     <div class="home-page">
         <!-- <img src="img/home.jpg" alt="home"> -->
         <h1>Danh sách nhiệm vụ</h1>
+        <div class="option-checkbox">
+            <select name="action" id="" required>
+                <option value="">Hành động</option>
+                <option value="delete">Xóa</option>
+            </select>
+
+            <button disabled id="sumbit-checkbox" type="submit">Thực hiện</button>
+        </div>
         <div class="filter-part">
             <div class="search-input">
                 <input id="search" type="text" placeholder="Tìm kiếm" onkeyup="filter(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
+            
             <input id="task-id" type="text" placeholder="ID nhiệm vụ">
             <input id="status" type="text" placeholder="Trạng thái">
             <input id="date" type="date" placeholder="Chọn ngày">
@@ -54,14 +63,7 @@
                     <% }) %>
                 </tbody>
             </table>
-            <div class="option-checkbox">
-                <select name="action" id="" required>
-                    <option value="">--Chọn hành động--</option>
-                    <option value="delete">Xóa</option>
-                </select>
-
-                <button disabled id="sumbit-checkbox" type="submit">Thực hiện</button>
-            </div>
+            
         </form>
         
         <button id="creat-task">Tạo mới</button>

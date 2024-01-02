@@ -6,7 +6,7 @@
             <div class="info-task-staff">
                 <div class="col-1">
                     <p>ID task : <%= tasks.taskId %></p>
-                    <p>Tai xe : <%= tasks.nameTake %></p>
+                    <p>Tai xe : <%= tasks.nameTake.name %></p>
                     <% if (staffs.find(e => e.name === tasks.nameTake && e.position === "Collector")){ %>
                         <p>ID nhan vien : <%= staffs.find(e => e.name === tasks.nameTake && e.position === "Collector").staffId %></p>
                     <%} else { %>

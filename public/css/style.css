@@ -132,6 +132,34 @@ main .home-page h1{
     margin-left: 20px;
     margin-bottom: 30px;
 }
+
+main .home-page .option-checkbox {
+    width: 25%;
+    margin-left: 40px;
+}
+
+main .home-page .option-checkbox select {
+    font-size: 17px;
+    padding: 5px 10px;
+    border: 2px solid rgb(152, 152, 152);
+    border-radius: 10px;
+    margin-right: 30px;
+}
+
+main .home-page .option-checkbox button {
+    width: 100px;   
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(13, 211, 13);
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+main .home-page .option-checkbox button:disabled {
+    background-color: rgb(166, 243, 166);
+}
+
 main .home-page .filter-part {
     width: 25%;
     display: flex;

@@ -19,7 +19,7 @@ const getAllTasks = async (req, res, next) => {
 
 const getTaskDetail = async (req, res, next) => {
     try {
-        const tasks = await Task.findById(req.params.id);
+        const tasks = await Task.findById(req.params.id).populate('nameTake');
 
         if (!tasks){
             const error = new Error('Task not found');
